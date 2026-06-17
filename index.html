@@ -1,0 +1,162 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>✦ Chérie Clique: Team Maker ✦</title>
+    
+    <style>
+        * { box-sizing: border-box; margin: 0; padding: 0; }
+        
+        body { 
+            background: url('https://pinimg.com') no-repeat center center fixed;
+            background-size: cover;
+            color: #4a3b4a; 
+            font-family: Arial, Helvetica, sans-serif; 
+            display: flex; 
+            justify-content: center; 
+            align-items: center; 
+            min-height: 100vh; 
+            padding: 20px; 
+            letter-spacing: 0.5px;
+        }
+        
+        .card-container { 
+            background: rgba(255, 255, 255, 0.82); 
+            backdrop-filter: blur(15px); 
+            -webkit-backdrop-filter: blur(15px);
+            padding: 40px 30px; 
+            border-radius: 35px; 
+            box-shadow: 0 20px 50px rgba(255, 182, 193, 0.3); 
+            max-width: 460px; 
+            width: 100%; 
+            text-align: center; 
+            border: 3px solid rgba(255, 255, 255, 0.9);
+            position: relative;
+        }
+        .decor { font-size: 35px; margin-bottom: 5px; display: inline-block; animation: float 4s ease-in-out infinite; }
+        @keyframes float { 0%, 100% { transform: translateY(0); } 50% { transform: translateY(-6px); } }
+        
+        h1 { 
+            color: #ff7597; 
+            font-size: 45px; 
+            margin-bottom: 2px; 
+            text-shadow: 1px 1px #fff; 
+            font-weight: bold;
+        }
+        .sub-title { 
+            color: #ff8ebb; 
+            font-size: 18px; 
+            margin-bottom: 20px; 
+            font-weight: bold; 
+            text-transform: uppercase;
+            letter-spacing: 2px;
+        }
+        p { color: #6b586b; font-size: 15px; line-height: 1.5; margin-bottom: 25px; font-weight: 500; }
+        
+        .input-label { display: block; text-align: left; font-size: 13px; color: #ff7597; text-transform: uppercase; margin-bottom: 8px; margin-left: 5px; font-weight: bold; letter-spacing: 1px; }
+        textarea { 
+            width: 100%; height: 95px; padding: 15px; border: 2px solid #ffcad4; border-radius: 22px; 
+            background: rgba(255, 253, 254, 0.9); font-size: 15px; color: #4a3b4a; outline: none; transition: 0.3s; resize: none; font-family: Arial, Helvetica, sans-serif; margin-bottom: 15px;
+            box-shadow: inset 0 2px 4px rgba(0,0,0,0.02);
+        }
+        input[type="number"] {
+            width: 100%; padding: 14px; border: 2px solid #ffcad4; border-radius: 18px; 
+            background: rgba(255, 253, 254, 0.9); font-size: 16px; color: #4a3b4a; outline: none; text-align: center; font-family: Arial, Helvetica, sans-serif; margin-bottom: 20px;
+            box-shadow: inset 0 2px 4px rgba(0,0,0,0.02);
+        }
+        textarea:focus, input[type="number"]:focus { border-color: #ff7597; background: #fff; box-shadow: 0 0 15px rgba(255,117,151,0.15); }
+        
+        .btn { 
+            background: linear-gradient(135deg, #ff8ebb 0%, #ff7597 100%); color: white; border: none; padding: 15px 30px; 
+            border-radius: 25px; font-size: 16px; font-weight: 700; cursor: pointer; box-shadow: 0 8px 20px rgba(255, 117, 151, 0.3); transition: all 0.3s ease; width: 100%; font-family: Arial, Helvetica, sans-serif;
+        }
+        .btn:hover { transform: translateY(-2px); box-shadow: 0 12px 25px rgba(255, 117, 151, 0.45); }
+        
+        .result-box { 
+            margin-top: 25px; background: rgba(255, 245, 248, 0.95); padding: 22px; border-radius: 25px; border: 2px solid #ffb3c6; 
+            text-align: left; display: none; max-height: 280px; overflow-y: auto; animation: popIn 0.5s ease forwards;
+        }
+        .group-item { background: white; padding: 12px 15px; border-radius: 15px; margin-bottom: 10px; border-left: 6px solid #ff7597; font-size: 15px; box-shadow: 0 2px 5px rgba(0,0,0,0.02); }
+        .group-title { color: #ff5c8a; margin-bottom: 4px; font-size: 16px; font-weight: bold; }
+        .summary-info { margin-top: 15px; background: #ffe5ec; border: 2px solid #ff7597; padding: 10px; border-radius: 15px; font-size: 13.5px; color: #ff5c8a; text-align: center; font-weight: bold; }
+        
+        .credit-text {
+            margin-top: 20px;
+            font-size: 12px;
+            color: #bfa3b0;
+            font-style: italic;
+            letter-spacing: 2px;
+            text-shadow: 1px 1px #fff;
+        }
+    </style>
+</head>
+<body>
+
+<div style="text-align: center; width: 100%; max-width: 460px;">
+    <div class="card-container">
+        <span class="decor">🎲🎀✨</span>
+        <h1>Chérie Clique</h1>
+        <div class="sub-title">Team Maker</div>
+        <p>Hello everyone! ✨ Yuk divide everyone into perfect squads automatically. Just enter the names and tell us how many teams fate needs to create! 😉🤍</p>
+        
+        <span class="input-label">📝 Enter Member Names</span>
+        <textarea id="names-input" oninput="bersihkanHasil()" placeholder="Type names separated by commas... (Contoh: Olivia, Ariana, Sabrina)"></textarea>
+        
+        <span class="input-label">🔢 Number of Groups</span>
+        <input type="number" id="group-count" min="1" placeholder="Mau dibagi berapa kelompok?">
+
+        <button class="btn" onclick="acakKelompok()">Generate Squads 🪄</button>
+        
+        <div id="team-result" class="result-box">
+            <div style="font-size: 12px; color: #a68fa6; text-transform: uppercase; margin-bottom: 12px; text-align: center; font-weight: bold;">✨ Squads Generated ✨</div>
+            <div id="groups-list"></div>
+            <div id="groups-summary" class="summary-info"></div>
+        </div>
+    </div>
+    
+    <div class="credit-text">♡ by nadhira aurora ♡</div>
+</div>
+
+<script>
+    function bersihkanHasil() {
+        document.getElementById("team-result").style.display = "none";
+        document.getElementById("group-count").value = "";
+    }
+
+    function acakKelompok() {
+        var inputNames = document.getElementById("names-input").value;
+        var inputCount = document.getElementById("group-count").value;
+        if(!inputNames.trim() || !inputCount) { alert("Oops! Don't leave the fields empty, Nat! Ketik dulu ya 🫶"); return; }
+        var listNama = inputNames.split(',').map(function(n) { return n.trim(); }).filter(function(n) { return n !== ""; });
+        var jumlahKelompok = parseInt(inputCount);
+        if(listNama.length < 2) { alert("Hey, enter at least 2 names first biar bisa diacak! 😤"); return; }
+        if(jumlahKelompok < 1) { alert("Kelompoknya minimal 1 dong wkwk! 😭"); return; }
+        if(jumlahKelompok > listNama.length) { alert("Jumlah kelompok gak boleh lebih banyak dari jumlah orangnya, Nat!"); return; }
+        
+        for (var i = listNama.length - 1; i > 0; i--) {
+            var j = Math.floor(Math.random() * (i + 1));
+            var temp = listNama[i]; listNama[i] = listNama[j]; listNama[j] = temp;
+        }
+        var hasilKelompok = [];
+        for (var g = 0; g < jumlahKelompok; g++) { hasilKelompok.push([]); }
+        for (var n = 0; n < listNama.length; n++) { hasilKelompok[n % jumlahKelompok].push(listNama[n]); }
+        
+        var containerList = document.getElementById("groups-list"); containerList.innerHTML = "";
+        for (var k = 0; k < hasilKelompok.length; k++) {
+            var itemDiv = document.createElement("div"); itemDiv.className = "group-item";
+            var titleDiv = document.createElement("div"); titleDiv.className = "group-title";
+            titleDiv.innerText = "Squad " + (k + 1) + " 🧸 (" + hasilKelompok[k].length + " Members)";
+            var membersDiv = document.createElement("div"); membersDiv.innerText = hasilKelompok[k].join(", ");
+            itemDiv.appendChild(titleDiv); itemDiv.appendChild(membersDiv); containerList.appendChild(itemDiv);
+        }
+        var sisaOrang = listNama.length % jumlahKelompok;
+        var teksRangkuman = "📊 Report: Successfully grouped " + listNama.length + " students into " + jumlahKelompok + " squads.";
+        if (sisaOrang > 0) { teksRangkuman += " (Ada " + sisaOrang + " squad yang dapet 1 extra member biar adil! 😉)"; } 
+        else { teksRangkuman += " (All squads are perfectly equal! ✨)"; }
+        document.getElementById("groups-summary").innerText = teksRangkuman;
+        document.getElementById("team-result").style.display = "block";
+    }
+</script>
+</body>
+</html>
